@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 namespace DeliveryWinForms.Services;
 
 /// <summary>
-/// Товар CRUD
+/// Отгрузка CRUD
 /// </summary>
-public class ProductService
+public class ShipmentService
 {
     /// <summary>
     /// Контекст подключения
@@ -17,78 +17,77 @@ public class ProductService
     /// Конструктор
     /// </summary>
     /// <param name="context"></param>
-    public ProductService(ModelContext context)
+    public ShipmentService(ModelContext context)
     {
         _context = context;
     }
 
     /// <summary>
-    /// Создание товара
+    /// Создание отгрузки
     /// </summary>
-    /// <param name="newProduct"></param>
+    /// <param name="newShipment"></param>
     /// <returns></returns>
-    public Product Create(Product newProduct)
+    public Shipment Create(Shipment newShipment)
     {
-        _context.Products.Add(newProduct);
+        _context.Shipments.Add(newShipment);
         _context.SaveChanges();
 
-        return newProduct;
+        return newShipment;
     }
 
     /// <summary>
-    /// Получить все товары
+    /// Получить все отгрузки
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Product> GetAll()
+    public IEnumerable<Shipment> GetAll()
     {
-        return _context.Products
+        return _context.Shipments
             .AsNoTracking()
             .ToList();
     }
 
     /// <summary>
-    /// Получить товар
+    /// Получить отгрузку
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public Product? GetById(int id)
+    public Shipment? GetById(int id)
     {
-        return _context.Products
+        return _context.Shipments
             .AsNoTracking()
-            .SingleOrDefault(p => p.ProductId == id);
+            .SingleOrDefault(p => p.OrderId == id);
     }
 
     /// <summary>
-    /// Обновить товар
+    /// Обновить отгрузку
     /// </summary>
     /// <param name="id"></param>
-    /// <param name="newProduct"></param>
+    /// <param name="newShipment"></param>
     /// <exception cref="InvalidOperationException"></exception>
-    public void UpdateName(int id, Product newProduct)
+    public void UpdateOrder(int id, Shipment newShipment)
     {
-        var productToUpdate = _context.Products.Find(id);
+        var shipmentToUpdate = _context.Shipments.Find(id);
 
-        if (productToUpdate is null)
+        if (shipmentToUpdate is null)
         {
-            throw new InvalidOperationException("Товар не найден.");
+            throw new InvalidOperationException("Отгрузка не найдена.");
         }
 
-        _context.Products.Update(newProduct);
-
+        _context.Shipments.Update(newShipment);
         _context.SaveChanges();
     }
 
     /// <summary>
-    /// Удалить товар
+    /// Удалить отгрузку
     /// </summary>
     /// <param name="id"></param>
     public void DeleteById(int id)
     {
-        var productToDelete = _context.Products.Find(id);
+        var shipmentToDelete = _context.Shipments.Find(id);
 
-        if (productToDelete is not null)
+        if (shipmentToDelete is not null)
         {
-            _context.Products.Remove(productToDelete);
+            _context.Shipments.Remove(shipmentToDelete);
             _context.SaveChanges();
         }
     }
