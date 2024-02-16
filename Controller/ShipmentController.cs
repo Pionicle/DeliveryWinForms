@@ -1,10 +1,6 @@
-﻿using DeliveryWinForms.Services;
-using System;
-using System.Collections.Generic;
+﻿using DeliveryWinForms.Models;
+using DeliveryWinForms.Services;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DeliveryWinForms.Controller;
 
@@ -39,5 +35,41 @@ internal class ShipmentController
         }
 
         dataGridView.DataSource = dataTable;
+    }
+
+    /// <summary>
+    /// Добавляет новую отгрузку в таблицу
+    /// </summary>
+    /// <param name="orderId"></param>
+    /// <param name="shipmentDate"></param>
+    /// <param name="shipmentGoods"></param>
+    /// <exception cref="ArgumentException"></exception>
+    public static void AddShipment(int orderId, string shipmentDate, string shipmentGoods)
+    {
+        int cleanShipmentGoods;
+        if (!int.TryParse(shipmentGoods, out cleanShipmentGoods))
+        {
+            throw new ArgumentException("Отгружено товара введено некорректно.", nameof(shipmentGoods));
+        }
+        if (cleanShipmentGoods <= 0)
+        {
+            throw new ArgumentException("Отгружено товара должно быть больше 0.", nameof(shipmentGoods));
+        }
+        DateTime clearShipmentDate;
+        if (!DateTime.TryParse(shipmentDate, out clearShipmentDate))
+        {
+            throw new ArgumentException("Дата отгрузки указана некорректно.", nameof(shipmentDate));
+        }
+
+        using (var context = new ModelContext())
+        {
+            var shipmentService = new ShipmentService(context);
+            shipmentService.Create(new Shipment
+            {
+                OrderId = orderId,
+                ShipmentDate = clearShipmentDate,
+                ShippedGoods = cleanShipmentGoods
+            });
+        }
     }
 }

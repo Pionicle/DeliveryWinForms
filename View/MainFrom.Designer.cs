@@ -31,9 +31,9 @@
             dataGridView = new DataGridView();
             comboBox1 = new ComboBox();
             label1 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            buttonAddProduct = new Button();
+            buttonAddOrder = new Button();
+            buttonAddShipment = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -41,57 +41,65 @@
             // 
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(12, 85);
+            dataGridView.Location = new Point(12, 58);
             dataGridView.Name = "dataGridView";
             dataGridView.ReadOnly = true;
-            dataGridView.Size = new Size(776, 353);
+            dataGridView.Size = new Size(776, 380);
             dataGridView.TabIndex = 0;
             // 
             // comboBox1
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.Font = new Font("Segoe UI", 12F);
             comboBox1.Items.AddRange(new object[] { "Товар", "Заказ", "Отгрузка" });
-            comboBox1.Location = new Point(79, 20);
+            comboBox1.Location = new Point(88, 17);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(147, 27);
+            comboBox1.Size = new Size(156, 29);
             comboBox1.TabIndex = 1;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F);
             label1.Location = new Point(12, 20);
             label1.Name = "label1";
-            label1.Size = new Size(61, 19);
+            label1.Size = new Size(70, 21);
             label1.TabIndex = 2;
             label1.Text = "Таблица";
             // 
-            // button1
+            // buttonAddProduct
             // 
-            button1.Location = new Point(248, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(147, 40);
-            button1.TabIndex = 3;
-            button1.Text = "Добавить товар";
-            button1.UseVisualStyleBackColor = true;
+            buttonAddProduct.Font = new Font("Segoe UI", 12F);
+            buttonAddProduct.Location = new Point(302, 12);
+            buttonAddProduct.Name = "buttonAddProduct";
+            buttonAddProduct.Size = new Size(147, 40);
+            buttonAddProduct.TabIndex = 3;
+            buttonAddProduct.Text = "Добавить товар";
+            buttonAddProduct.UseVisualStyleBackColor = true;
+            buttonAddProduct.Click += buttonAddProduct_Click;
             // 
-            // button2
+            // buttonAddOrder
             // 
-            button2.Location = new Point(416, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(147, 40);
-            button2.TabIndex = 4;
-            button2.Text = "Добавить заказ";
-            button2.UseVisualStyleBackColor = true;
+            buttonAddOrder.Font = new Font("Segoe UI", 12F);
+            buttonAddOrder.Location = new Point(455, 10);
+            buttonAddOrder.Name = "buttonAddOrder";
+            buttonAddOrder.Size = new Size(147, 40);
+            buttonAddOrder.TabIndex = 4;
+            buttonAddOrder.Text = "Добавить заказ";
+            buttonAddOrder.UseVisualStyleBackColor = true;
+            buttonAddOrder.Click += buttonAddOrder_Click;
             // 
-            // button3
+            // buttonAddShipment
             // 
-            button3.Location = new Point(569, 12);
-            button3.Name = "button3";
-            button3.Size = new Size(147, 40);
-            button3.TabIndex = 5;
-            button3.Text = "Добавить отгрузку";
-            button3.UseVisualStyleBackColor = true;
+            buttonAddShipment.Font = new Font("Segoe UI", 12F);
+            buttonAddShipment.Location = new Point(608, 10);
+            buttonAddShipment.Name = "buttonAddShipment";
+            buttonAddShipment.Size = new Size(156, 40);
+            buttonAddShipment.TabIndex = 5;
+            buttonAddShipment.Text = "Добавить отгрузку";
+            buttonAddShipment.UseVisualStyleBackColor = true;
+            buttonAddShipment.Click += buttonAddShipment_Click;
             // 
             // MainFrom
             // 
@@ -99,9 +107,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(buttonAddShipment);
+            Controls.Add(buttonAddOrder);
+            Controls.Add(buttonAddProduct);
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(dataGridView);
@@ -118,8 +126,8 @@
         private DataGridView dataGridView;
         private ComboBox comboBox1;
         private Label label1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button buttonAddProduct;
+        private Button buttonAddOrder;
+        private Button buttonAddShipment;
     }
 }
